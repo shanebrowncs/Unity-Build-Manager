@@ -14,6 +14,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Ionic.Zip;
+using System.Media;
 
 namespace Unity_Build_Manager
 {
@@ -387,6 +388,10 @@ namespace Unity_Build_Manager
         {
             SpinnerScaleTimer.Start();
             statusLbl.Text = "Ready!";
+            SystemSound sound = SystemSounds.Asterisk;
+            sound.Play();
+            this.TopMost = true;
+            this.TopMost = false;
         }
 
         void builder_DoWork(object sender, DoWorkEventArgs e)
@@ -407,41 +412,44 @@ namespace Unity_Build_Manager
             string buildType;
             string buildLoc;
 
+            if (!Directory.Exists(itemInfo[2] + "\\" + buildNameTxt.Text))
+                Directory.CreateDirectory(itemInfo[2] + "\\" + buildNameTxt.Text);
+
             if (!Directory.Exists(itemInfo[2] + "\\" + buildNameTxt.Text + "_" + itemInfo[0]))
-                Directory.CreateDirectory(itemInfo[2] + "\\" + buildNameTxt.Text + "_" + itemInfo[0]);
+                Directory.CreateDirectory(itemInfo[2] + "\\" + buildNameTxt.Text + "\\" + buildNameTxt.Text + "_" + itemInfo[0]);
 
             string origBuildDir = itemInfo[2];
-            itemInfo[2] = itemInfo[2] + "\\" + buildNameTxt.Text + "_" + itemInfo[0];
+            //itemInfo[2] = itemInfo[2] + "\\" + buildNameTxt.Text + "_" + itemInfo[0];
 
             switch(buildTargetFromString(itemInfo[0]))
             {
                 case BuildTarget.Linux_x64:
                     buildType = "-buildLinux64Player";
-                    buildLoc = itemInfo[2] + "\\" + buildNameTxt.Text + "_x64";
+                    buildLoc = itemInfo[2] + "\\" + buildNameTxt.Text + "\\" + buildNameTxt.Text + "_Linux_x64\\" + buildNameTxt.Text + "_x64";
                     break;
                 case BuildTarget.Linux_x86:
-                    buildType = "-buildLinux86Player";
-                    buildLoc = itemInfo[2] + "\\" + buildNameTxt.Text + "_x86";
+                    buildType = "-buildLinux32Player";
+                    buildLoc = itemInfo[2] + "\\" + buildNameTxt.Text + "\\" + buildNameTxt.Text + "_Linux_x86\\" + buildNameTxt.Text + "_x86";
                     break;
                 case BuildTarget.Mac_OSX_x64:
                     buildType = "-buildOSX64Player";
-                    buildLoc = itemInfo[2] + "\\" + buildNameTxt.Text + "_x64.app";
+                    buildLoc = itemInfo[2] + "\\" + buildNameTxt.Text + "\\" + buildNameTxt.Text + "_Mac_OSX_x64\\" + buildNameTxt.Text + "_x64.app";
                     break;
                 case BuildTarget.Mac_OSX_x86:
                     buildType = "-buildOSXPlayer";
-                    buildLoc = itemInfo[2] + "\\" + buildNameTxt.Text + "_x86.app";
+                    buildLoc = itemInfo[2] + "\\" + buildNameTxt.Text + "\\" + buildNameTxt.Text + "_Mac_OSX_x86\\" + buildNameTxt.Text + "_x86.app";
                     break;
                 case BuildTarget.Windows_x64:
                     buildType = "-buildWindows64Player";
-                    buildLoc = itemInfo[2] + "\\" + buildNameTxt.Text + "_x64.exe";
+                    buildLoc = itemInfo[2] + "\\" + buildNameTxt.Text + "\\" + buildNameTxt.Text + "_Windows_x64\\" + buildNameTxt.Text + "_x64.exe";
                     break;
                 case BuildTarget.Windows_x86:
                     buildType = "-buildWindowsPlayer";
-                    buildLoc = itemInfo[2] + "\\" + buildNameTxt.Text + "_x86.exe";
+                    buildLoc = itemInfo[2] + "\\" + buildNameTxt.Text + "\\" + buildNameTxt.Text + "_Windows_x86\\" + buildNameTxt.Text + "_x86.exe";
                     break;
                 default:
                     buildType = "-buildWindows64Player";
-                    buildLoc = itemInfo[2] + "\\" + buildNameTxt.Text + "_x86.exe";
+                    buildLoc = itemInfo[2] + "\\" + buildNameTxt.Text + "\\" + buildNameTxt.Text + "_Windows_x64\\" + buildNameTxt.Text + "_x86.exe";
                     break;
             }
 
@@ -466,12 +474,12 @@ namespace Unity_Build_Manager
 
                 builder.ReportProgress(i, 1);
 
-                string buildLoc = curItem[2] + "\\" + buildNameTxt.Text + "_" + curItem[0];
+                string buildLoc = curItem[2] + "\\" + buildNameTxt.Text + "\\" + buildNameTxt.Text + "_" + curItem[0];
 
                 using(ZipFile zip = new ZipFile())
                 {
                     zip.AddDirectory(buildLoc);
-                    zip.Save(curItem[2] + "\\" + buildNameTxt.Text + "_" + curItem[0] + ".zip");
+                    zip.Save(curItem[2] + "\\" + buildNameTxt.Text + "\\" + buildNameTxt.Text + "_" + curItem[0] + ".zip");
                 }
             }
         }
