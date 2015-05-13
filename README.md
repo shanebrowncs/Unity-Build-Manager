@@ -5,7 +5,7 @@ A Management Tool for Multiple Unity3D Builds
 
 ## Installation:
 
-* Download the latest release installer [here](https://github.com/SajeOne/Unity-Build-Manager/releases)
+* Download the latest release installer [here](https://github.com/SajeOne/Unity-Build-Manager/releases/download/1.0.1/Unity.Build.Manager.exe)
 * Install the application to a directory of your choice
 * Open and use the application from either the chosen application directory or the start menu shortcut
 
