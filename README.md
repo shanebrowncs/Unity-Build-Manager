@@ -1,5 +1,5 @@
 # Unity-Build-Manager
-A Management Tool for Multiple Unity Builds
+A Management Tool for Multiple Unity3D Builds
 
 ![alt](http://i.imgur.com/nyuFPfP.png "Application Interface")
 
