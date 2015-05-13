@@ -49,12 +49,22 @@ namespace Unity_Build_Manager
         {
             RegistryEditor regEdit = new RegistryEditor();
 
-            string filePath = (string)regEdit.ReadFromRegistry("defaultFile", "Software\\UnityBuildManager", false, "");
+            string[] args = Environment.GetCommandLineArgs();
 
-            if (filePath != "")
+            if(args.Length > 1 && File.Exists(args[1]))
             {
-                loadUBMFile(filePath);
+                loadUBMFile(args[1]);
             }
+            else
+            {
+                string filePath = (string)regEdit.ReadFromRegistry("defaultFile", "Software\\UnityBuildManager", false, "");
+
+                if (filePath != "")
+                {
+                    loadUBMFile(filePath);
+                }
+            }
+
 
             string unityPath = (string)regEdit.ReadFromRegistry("Location x64", "Software\\Unity Technologies\\Installer\\Unity", false, "");
 
