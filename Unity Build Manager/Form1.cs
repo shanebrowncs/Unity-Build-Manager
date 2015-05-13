@@ -295,7 +295,7 @@ namespace Unity_Build_Manager
                     for (int i = 0; i < buildList.Items.Count; i++ )
                         items[i] = buildList.Items[i].ToString();
 
-                    saver.saveToXML(loadedFileLbl.Text, items, archiveBuildsCb.Checked, buildNameTxt.Text);
+                    saver.saveToXML(sfd.FileName, items, archiveBuildsCb.Checked, buildNameTxt.Text);
                     this.Text = "Unity Build Manager";
                     loadedFileLbl.Text = sfd.FileName;
                     pendingChanges = false;
