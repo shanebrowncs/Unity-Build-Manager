@@ -1,7 +1,7 @@
 # Unity-Build-Manager
 A Management Tool for Multiple Unity3D Builds
 
-![alt](http://gfycat.com/ifr/AdmirableAccurateIndianglassfish "Application Interface")
+![alt](http://fat.gfycat.com/AdmirableAccurateIndianglassfish.gif "Application Interface")
 
 ## Installation:
 
