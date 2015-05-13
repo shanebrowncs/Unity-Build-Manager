@@ -8,3 +8,10 @@ A Management Tool for Multiple Unity3D Builds
 * Download the latest release installer [here](https://github.com/SajeOne/Unity-Build-Manager/releases)
 * Install the application to a directory of your choice
 * Open and use the application from either the chosen application directory or the start menu shortcut
+
+## Features:
+
+* Save Builds to configuration file that can be opened later
+* Have an unlimited amount of builds per file
+* Set any file of your choice to open as default when the application starts
+* Enable build archiving to auto-zip builds into conveniently placed archives ready for distribution
